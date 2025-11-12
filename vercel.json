@@ -1,17 +1,17 @@
 {
   "version": 2,
-  "framework": null,
+  "framework": "vite",
   "buildCommand": "pnpm install && pnpm build",
   "installCommand": "pnpm install",
   "outputDirectory": "dist/public",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "src": "^/api/.*$",
+      "dest": "/api/upload.ts"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
