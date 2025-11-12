@@ -3,7 +3,7 @@
     "client/src/**/*",
     "shared/**/*",
     "server/**/*",
-    "api/**/*" // <-- السطر ده هو الحل
+    "api/**/*"
   ],
   "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
@@ -17,14 +17,13 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
-    "moduleResolution": "bundler",
+    
+    "moduleResolution": "node", // <-- التعديل الأول: غيرنا "bundler" لـ "node"
+
     "baseUrl": ".",
-    "types": [
-      "node",
-      "vite/client",
-      "express",
-      "multer"
-    ],
+    
+    // "types": [], // <-- التعديل التاني: شيلنا السطر ده خالص عشان يقرأ كل التعريفات
+
     "paths": {
       "@/*": ["./client/src/*"],
       "@shared/*": ["./shared/*"]
