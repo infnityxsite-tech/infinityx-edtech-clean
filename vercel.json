@@ -4,11 +4,6 @@
   "framework": "vite",
   "outputDirectory": "dist/client",
   "installCommand": "pnpm install",
-  "functions": {
-    "api/**/*.ts": {
-      "runtime": "vercel-nodejs@20.0.0"
-    }
-  },
   "rewrites": [
     {
       "source": "/api/:path*",
