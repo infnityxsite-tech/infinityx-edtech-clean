@@ -13,16 +13,14 @@
     {
       "source": "/api/:path*",
       "destination": "/api"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/uploads/(.*)",
-      "dest": "/uploads/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/uploads/:match*",
+      "destination": "/uploads/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
