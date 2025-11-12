@@ -1,34 +1,10 @@
-import express, { Request, Response, NextFunction } from "express"; // <-- تم دمج السطرين هنا
-import { createExpressMiddleware } from "@trpc/server/adapters/express";
-import { appRouter } from "../server/routers";
-import { createContext } from "../server/_core/context";
-import uploadRouter from "../server/routes/upload";
-import path from "path";
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-const app = express();
-
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from public directory
-app.use(express.static(path.join(process.cwd(), "public")));
-
-// Upload route
-app.use("/api/upload", uploadRouter);
-
-// tRPC API
-app.use(
-  "/api/trpc",
-  createExpressMiddleware({
-    router: appRouter,
-    createContext,
-  })
-);
-
-// Health check
-app.get("/api/health", (req: Request, res: Response) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
-});
-
-export default app;
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Health check endpoint
+  res.status(200).json({ 
+    status: "ok", 
+    timestamp: new Date().toISOString(),
+    message: "InfinityX EdTech API is running"
+  });
+}

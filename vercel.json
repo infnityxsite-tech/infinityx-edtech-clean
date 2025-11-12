@@ -4,15 +4,25 @@
   "buildCommand": "pnpm install && pnpm build",
   "installCommand": "pnpm install",
   "outputDirectory": "dist/public",
+  "rewrites": [
+    {
+      "source": "/api/trpc/:path*",
+      "destination": "/api/trpc/[trpc]"
+    }
+  ],
   "routes": [
     {
-      "src": "^/api/(.*)$",
+      "src": "/api/(.*)",
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*)\\.(js|css|png|jpg|jpeg|gif|svg|ico|txt|json|webp|woff2?)$",
+      "src": "/uploads/(.*)",
+      "dest": "/dist/public/uploads/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|txt|json|webp|woff2?))",
       "headers": { "Cache-Control": "public, max-age=31536000, immutable" },
-      "dest": "/dist/public/$1"
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
