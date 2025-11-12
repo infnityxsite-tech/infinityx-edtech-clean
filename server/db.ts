@@ -148,7 +148,7 @@ export type InsertCourse = Omit<Course, "id" | "createdAt" | "updatedAt">;
 
 export async function getCourses(): Promise<Course[]> {
   const snapshot = await db.collection("courses").orderBy("createdAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Course));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as Course)); // <-- تم التعديل هنا
 }
 
 export async function createCourse(data: InsertCourse) {
@@ -190,7 +190,7 @@ export type InsertProgram = Omit<Program, "id" | "createdAt" | "updatedAt">;
 
 export async function getPrograms(): Promise<Program[]> {
   const snapshot = await db.collection("programs").orderBy("createdAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Program));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as Program)); // <-- تم التعديل هنا
 }
 
 export async function createProgram(data: InsertProgram) {
@@ -233,7 +233,7 @@ export type InsertBlogPost = Omit<BlogPost, "id" | "createdAt" | "updatedAt">;
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   const snapshot = await db.collection("blogPosts").orderBy("publishedAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as BlogPost));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as BlogPost)); // <-- تم التعديل هنا
 }
 
 export async function createBlogPost(data: InsertBlogPost) {
@@ -277,12 +277,12 @@ export type InsertJobListing = Omit<JobListing, "id" | "createdAt" | "updatedAt"
 
 export async function getJobListings(): Promise<JobListing[]> {
   const snapshot = await db.collection("jobListings").where("isActive", "==", true).get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as JobListing));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as JobListing)); // <-- تم التعديل هنا
 }
 
 export async function getAllJobListings(): Promise<JobListing[]> {
   const snapshot = await db.collection("jobListings").orderBy("createdAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as JobListing));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as JobListing)); // <-- تم التعديل هنا
 }
 
 export async function createJobListing(data: InsertJobListing) {
@@ -323,7 +323,7 @@ export type InsertStudentApplication = Omit<StudentApplication, "id" | "createdA
 
 export async function getStudentApplications(): Promise<StudentApplication[]> {
   const snapshot = await db.collection("studentApplications").orderBy("createdAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as StudentApplication));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as StudentApplication)); // <-- تم التعديل هنا
 }
 
 export async function createStudentApplication(data: InsertStudentApplication) {
@@ -357,7 +357,7 @@ export type InsertContactMessage = Omit<ContactMessage, "id" | "createdAt">;
 
 export async function getContactMessages(): Promise<ContactMessage[]> {
   const snapshot = await db.collection("contactMessages").orderBy("createdAt", "desc").get();
-  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ContactMessage));
+  return snapshot.docs.map((doc: any) => ({ id: doc.id, ...doc.data() } as ContactMessage)); // <-- تم التعديل هنا
 }
 
 export async function createContactMessage(data: InsertContactMessage) {

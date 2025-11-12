@@ -1,12 +1,12 @@
 import multer from "multer";
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction } from "express"; // <-- تم دمج وحذف السطر الأول
+import path from "path";
+import fs from "fs";
 
 // Define a custom interface for requests that have a file attached by multer
 interface MulterRequest extends Request {
-  file: Express.Multer.File;
+  file?: Express.Multer.File;
 }
-import path from "path";
-import fs from "fs";
 
 const router = express.Router();
 

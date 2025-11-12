@@ -1,8 +1,9 @@
+import { Request, Response, NextFunction } from "express"; // <-- السطر ده سليم
 import { AXIOS_TIMEOUT_MS, COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import { ForbiddenError } from "@shared/_core/errors";
 import axios, { type AxiosInstance } from "axios";
 import { parse as parseCookieHeader } from "cookie";
-import { Request } from "express";
+// import { Request } from "express"; // <-- السطر ده هو اللي اتشال (سطر 6 القديم)
 import { SignJWT, jwtVerify } from "jose";
 import type { User } from "../db";
 import * as db from "../db";
@@ -192,8 +193,7 @@ class SDKServer {
       appId: payload.appId,
       name: payload.name,
     })
-      .setProtectedHeader({ alg: "HS256", typ: "JWT" })
-      .setExpirationTime(expirationSeconds)
+      .setProtectedHeader({ alg: "HS26", typ: "JWT" })
       .sign(secretKey);
   }
 
@@ -256,9 +256,9 @@ class SDKServer {
     } as GetUserInfoWithJwtResponse;
   }
 
-  async authenticateRequest(req: Request): Promise<User> {
+  async authenticateRequest(req: Request): Promise<User> { // <-- النوع ده بقى سليم
     // Regular authentication flow
-    const cookies = this.parseCookies(req.headers.cookie);
+    const cookies = this.parseCookies(req.headers.cookie); // <-- السطر ده بقى سليم
     const sessionCookie = cookies.get(COOKIE_NAME);
     const session = await this.verifySession(sessionCookie);
 

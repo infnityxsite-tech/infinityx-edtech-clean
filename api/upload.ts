@@ -1,13 +1,15 @@
-// server/routes/upload.ts
-import multer from "multer";
-import express, { Request, Response, NextFunction } from "express";
+// ############ ابدأ النسخ من هنا ############
 
-// Define a custom interface for requests that have a file attached by multer
-interface MulterRequest extends Request {
-  file: Express.Multer.File;
-}
+import multer from "multer";
+import express, { Request, Response, NextFunction } from "express"; // <-- السطر ده هو اللي بيعرف Response
 import path from "path";
 import fs from "fs";
+
+// Define a custom interface for requests that have a file attached by multer
+// السطر ده هو اللي بيعرف MulterRequest
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
 
 const router = express.Router();
 
@@ -46,6 +48,7 @@ const upload = multer({
 });
 
 // ✅ Upload route
+// الخط الأحمر المفروض يختفي من هنا
 router.post("/", upload.single("file"), async (req: MulterRequest, res: Response) => {
   try {
     if (!req.file) {
@@ -97,3 +100,5 @@ router.use((err: any, req: Request, res: Response, next: NextFunction) => {
 });
 
 export default router;
+
+// ############ انتهى النسخ ############
