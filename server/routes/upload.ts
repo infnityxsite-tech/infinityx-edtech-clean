@@ -1,5 +1,6 @@
 import multer from "multer";
-import express, { Request, Response, NextFunction } from "express"; // <-- تم دمج وحذف السطر الأول
+import express from "express";
+import type { Request, Response, NextFunction } from "express";
 import path from "path";
 import fs from "fs";
 
@@ -66,7 +67,7 @@ router.post(
 );
 
 // Error handler for multer
-router.use((err: any, req: Request, res: Response, next: NextFunction) => {
+router.use((err: any, req: Request, res: Response, next: NextFunction): void => {
   if (err instanceof multer.MulterError) {
     if (err.code === "LIMIT_FILE_SIZE") {
       res.status(400).json({ error: "File too large (max 20MB)" });
