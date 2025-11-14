@@ -21,7 +21,13 @@ export const appRouter = router({
       const cookieOptions = getSessionCookieOptions(ctx.req);
       // Clear session cookie
       // @ts-ignore 
-      ctx.res.cookie(COOKIE_NAME, "", { ...cookieOptions, maxAge: -1 }); // <-- الخطأ التاني هنا
+      if (ctx.res?.setHeader) {
+        ctx.res.setHeader(
+          "Set-Cookie",
+          `${COOKIE_NAME}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`
+  );
+}
+
       return { success: true } as const;
     }),
   }),
